@@ -1,0 +1,15 @@
+ apiVersion: v1 # Specifies the Kubernetes API version being used.
+ kind: Service  # Defines the Kubernetes resource type as a Service
+ metadata:
+   name: karsajobs-svc  # Name of the service
+   labels:
+     app: karsajobs  # Labeling the service for categorization
+ spec:
+   type: NodePort  # Service type: exposed externally through a node port
+   selector:
+     tier: backend  # Selecting pods based on the 'tier' label being 'backend'
+   ports:
+   - port: 8080  # Port on which the service is listening internally
+     name: karsajobs  # Name of the port
+     protocol: TCP  # Protocol used (TCP in this case)
+     nodePort: 30007  # Node port exposed externally for accessing the service

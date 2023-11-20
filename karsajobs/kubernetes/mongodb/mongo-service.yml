@@ -1,0 +1,12 @@
+ apiVersion: v1 # Specifies the Kubernetes API version being used
+ kind: Service # Defines the Kubernetes resource type as a Service
+ metadata:
+   name: mongo-svc # Sets the name of the Service as 'mongo-svc'
+   labels:
+     app: mongo # Labels the Service with 'app: mongo' for identification
+ spec:
+   ports:
+     - port: 27017 # Specifies the port to be exposed (27017 in this case)
+   selector:
+     tier: data # Defines the selector for identifying Pods to route traffic to
+   clusterIP: None # Specifies 'None' for the clusterIP to indicate headless service

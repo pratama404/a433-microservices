@@ -1,0 +1,30 @@
+ apiVersion: v1 # Specifies the Kubernetes API version being used.
+ kind: PersistentVolume  # Defines the Kubernetes resource type as a Persistent Volume
+ metadata:
+   name: mongo-pv  # Name of the PersistentVolume
+   labels:
+     type: local  # Label to identify the type as local
+ spec:
+   storageClassName: manual  # Storage class for the PersistentVolume
+   capacity:
+     storage: 1Gi  # Storage capacity of the PersistentVolume
+   accessModes:
+     - ReadWriteOnce  # Access mode for the PersistentVolume
+   hostPath:
+     path: "/mnt/data/db"  # Host path for the PersistentVolume
+
+ ---
+
+ apiVersion: v1 # Specifies the Kubernetes API version being used.
+ kind: PersistentVolumeClaim # Defines the Kubernetes resource type as a Persistent Volume Claim
+ metadata:
+   name: mongo-pvc  # Name of the PersistentVolumeClaim
+   labels:
+     app: mongo  # Label to identify the application as mongo
+ spec:
+   storageClassName: manual  # Storage class for the PersistentVolumeClaim
+   accessModes:
+     - ReadWriteOnce  # Access mode for the PersistentVolumeClaim
+   resources:
+     requests:
+       storage: 1Gi  # Requested storage capacity for the PersistentVolumeClaim
